@@ -8,6 +8,8 @@ mongo-express is a web-based MongoDB admin interface written in Node.js, Express
 
 # How to use this image
 
+This image can be built and used in operating systems built for ARMv7 architecture, e.g. Raspberry Pi with Raspbian. Tested with Raspberry Pi 4 Model B 4 GB, Raspbian Buster and Docker 19.03.1.
+
 ```console
 $ docker run --link some_mongo_container:mongo -p 8081:8081 mongo-express
 ```

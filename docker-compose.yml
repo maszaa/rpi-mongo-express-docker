@@ -1,8 +1,10 @@
 mongo:
-    image: mongo
+    image: sumglobal/rpi-mongodb
+    restart: always
 
 mongoexpress:
-    image: mongo-express
+    build: .
+    restart: always
     ports:
         - "8081:8081"
     links:

@@ -1,6 +1,7 @@
-FROM node:8-alpine
+FROM arm32v7/node:8-buster-slim
 
-RUN apk add --no-cache bash tini
+RUN apt-get update && \
+  apt-get install -y tini
 
 EXPOSE 8081
 
