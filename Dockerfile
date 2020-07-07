@@ -1,7 +1,4 @@
-FROM arm32v7/node:8-buster-slim
-
-RUN apt-get update && \
-  apt-get install -y tini
+FROM arm32v7/node:12-alpine3.11
 
 EXPOSE 8081
 
@@ -13,9 +10,12 @@ ENV ME_CONFIG_EDITORTHEME="default" \
     ME_CONFIG_BASICAUTH_PASSWORD="" \
     VCAP_APP_HOST="0.0.0.0"
 
-ENV MONGO_EXPRESS 0.53.0
+ENV MONGO_EXPRESS 0.54.0
 
-RUN npm install mongo-express@$MONGO_EXPRESS
+RUN set -eux; \
+	apk add --no-cache --virtual .me-install-deps git; \
+	npm install mongo-express@$MONGO_EXPRESS; \
+	apk del --no-network .me-install-deps
 
 COPY docker-entrypoint.sh /
 
